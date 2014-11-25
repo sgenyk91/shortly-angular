@@ -2,47 +2,47 @@ angular.module('shortly.services', [])
 
 .factory('Links', function ($http) {
   // Your code here
-  var newLinks = {
-    data: {
-      links: []
-    }
+  var linkData = {
+    links: []
   };
-
-  newLinks.getLinks = function() {
+  var getLinks = function() {
     return $http({
       method: 'GET',
       url: '/api/links',
       // data: user
     })
     .then(function (resp) {
-      console.log("GET resp", resp);
-      console.log("newLinks before", newLinks.data);
-      newLinks.data.links = resp.data;
-      console.log("newLinks after", newLinks.data);
-      return newLinks.data.links;
+      linkData.links = resp.data;
+      return linkData.links;
     })
     .catch(function(err) {
       console.log(err);
     });
   };
 
-  newLinks.addLink = function(link) {
+  var addLink = function(link) {
+    console.log("LINK", JSON.stringify(link));
     return $http({
       method: 'POST',
       url: '/api/links',
-      data: user
+      data: {'url': link}
     })
     .then(function (resp) {
-      console.log("POST resp", resp);
-
-      return resp.data;
+      console.log('POST resp', resp);
+      // linkData.link = resp.data.url;
+      // resp.send(resp.data);
     })
     .catch(function(err) {
-      console.log(err);
+      console.log('POST ERR', err);
     });
   };
+  return {
+    addLink: addLink,
+    getLinks: getLinks,
+    linkData: linkData,
+    link: {}
+  };
 
-  return newLinks;
 })
 
 .factory('Auth', function ($http, $location, $window) {

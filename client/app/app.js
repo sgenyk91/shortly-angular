@@ -6,7 +6,10 @@ angular.module('shortly', [
   'ngRoute'
 ])
 .config(function($routeProvider, $httpProvider) {
+
   // $urlRouterProvider.otherwise('/links');
+
+  // $stateProvider.state('links', {url: '/links'});
 
   $routeProvider
     .when('/signin', {

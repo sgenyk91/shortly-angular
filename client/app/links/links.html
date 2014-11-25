@@ -1,6 +1,8 @@
 <div id='container'>
   <!-- Your html here -->
   <ul>
-    <!-- <li ng-repeat="link in links">{{ link }}</li> -->
+    <li ng-repeat="url in linkData.links">
+      <a href={{url.url}}> {{ url.url }} </a>
+    </li>
   </ul>
 </div>
