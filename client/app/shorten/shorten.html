@@ -1,6 +1,40 @@
-<div id='container'>
-<!-- Your code here -->
-  <input ng-model="urlName" placeholder="Enter url here">
-  <button hr-alert ng-click="addLink(urlName)">Add Link</button>
+<!-- <div id='container'>
+  <form name='urlInput' novalidate>
+    <button hr-alert ng-click="addLink(urlName)">Add Link</button>
+  </form>
+</div> -->
 
+
+<div class="" ='container'>
+  <!-- FORM -->
+  <div class="row">
+    <form name='shortlyForm' ng-submit="addLink(urlLink)" novalidate class="form-group col-sm-4 well col-sm-offset-4">
+
+      <div class="input-group">
+        <div class="group">
+          <input ng-model="urlName" id="input"
+            name="link"
+            class="form-control input-lg material"
+            ng-model='urlLink'
+            required
+            type="url"
+            placeholder="Enter Url">
+        </div>
+        <span class="input-group-btn">
+          <button ng-disabled="shortlyForm.$invalid" class="btn btn-primary" type="button" ng-click="addLink(urlName)">Add Link</button>
+        </span>
+      </div>
+
+    </form>
+  </div>
+<!-- ERRORS -->
+  <div class="row">
+    <div ng-show="shortlyForm.link.$error.required && shortlyForm.$dirty"class="message alert alert-danger col-sm-2 col-sm-offset-4">
+      <h5>Url required</h5>
+    </div>
+
+    <div ng-show='shortlyForm.link.$error.url && shortlyForm.$dirty' class="message alert alert-danger col-sm-2 col-sm-offset-4">
+      <h5>Not a valid url</h5>
+    </div>
+  </div>
 </div>
